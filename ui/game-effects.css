@@ -1,0 +1,47 @@
+
+/* ui/game-effects.css — per-mode backgrounds + star particles */
+.kp-game-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+.kp-game-bg.show { opacity: 1; }
+
+.kp-game-bg.color {
+  background: linear-gradient(120deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd);
+  background-size: 400% 400%;
+  animation: kpColorShift 18s ease infinite;
+}
+@keyframes kpColorShift {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.kp-game-bg.mascot {
+  /* simple cute pattern using data URI SVG */
+  background-image:
+    radial-gradient(rgba(255,255,255,.25) 2px, transparent 3px),
+    radial-gradient(rgba(255,255,255,.18) 2px, transparent 3px),
+    linear-gradient(120deg, #d4fc79, #96e6a1);
+  background-size: 20px 20px, 30px 30px, cover;
+  background-position: 0 0, 10px 10px, center;
+}
+
+/* Star particle */
+.kp-star {
+  position: fixed;
+  font-size: 22px;
+  will-change: transform, opacity;
+  animation: kpStarUp 1.2s ease-out forwards;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.25));
+  pointer-events: none;
+}
+@keyframes kpStarUp {
+  0%   { transform: translateY(0) scale(1); opacity: 1; }
+  70%  { transform: translateY(-80px) scale(1.1); opacity: .85; }
+  100% { transform: translateY(-120px) scale(.9); opacity: 0; }
+}
